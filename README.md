@@ -1,4 +1,3 @@
-```markdown
 # nbx-txwatcher
 
 A lightweight Bitcoin transaction watcher for **RaspiBlitz** using **NBXplorer** and **BTCPay Server**.
