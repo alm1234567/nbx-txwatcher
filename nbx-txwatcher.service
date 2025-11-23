@@ -1,0 +1,15 @@
+[Unit]
+Description=NBX Bitcoin Transaction Watcher
+After=network.target nbxplorer.service btcpayserver.service
+
+[Service]
+User=btcpay
+Group=btcpay
+ExecStart=/usr/bin/python3 /home/admin/nbx-txwatcher.py
+Restart=on-failure
+RestartSec=10
+# Optional: ensure we have a sensible working dir
+WorkingDirectory=/home/admin
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,110 @@
+# ===========================================
+# NBX Transaction Watcher configuration
+# For RaspiBlitz + NBXplorer + BTCPay
+# ===========================================
+
+[global]
+
+# ---------------------------------------------------------------------------
+# NBXplorer connection
+# ---------------------------------------------------------------------------
+# URL to the NBXplorer HTTP API (RaspiBlitz default with BTCPay enabled).
+#
+nbx_url               = http://127.0.0.1:24444
+
+# Preferred: use the NBX cookie file (RaspiBlitz + BTCPay default).
+# This file is typically /home/btcpay/.nbxplorer/Main/.cookie and contains:
+#   __cookie__:LONG_RANDOM_PASSWORD
+# If set, nbx_user/nbx_pass below are ignored.
+#
+nbx_cookiefile = /home/btcpay/.nbxplorer/Main/.cookie
+
+# Alternative:
+#
+# nbx_user = __cookie__
+# nbx_pass = LONG_RANDOM_PASSWORD
+
+
+# ---------------------------------------------------------------------------
+# SMTP / Email settings
+# ---------------------------------------------------------------------------
+# SMTP server hostname
+#
+smtp_server           = smtp.example.com
+smtp_port             = 587
+smtp_user             = user@example.com
+smtp_pass             = SMTPPASSOWRD
+mail_from             = <Your Node> node@example.com
+mail_to               = recipient@example.com
+
+# ---------------------------------------------------------------------------
+# PGP encryption (optional)
+# ---------------------------------------------------------------------------
+# Enable PGP encryption of the email body (true/false).
+#
+pgp_enabled           = true
+
+# Recipient identifier: email, key ID, or fingerprint known to GPG.
+#
+pgp_recipient         = recipient@example.com
+
+# GPG home directory for the btcpay user (where public keys live).
+#
+pgp_homedir   = /home/btcpay/.gnupg
+
+# ---------------------------------------------------------------------------
+# Timezone label and offset for "local" time (cosmetic)
+# ---------------------------------------------------------------------------
+# timezone_label: free-form label that appears in the Date() line, e.g. "GMT-3".
+# timezone_offset_hours: offset from UTC in hours (can be negative or fractional).
+#   Examples:
+#     -3      -> UTC-3
+#     1       -> UTC+1
+#     -5.5    -> UTC-5:30
+#
+# The watcher will show:
+#   Date (UTC):    22/Nov/25 14:03:45
+#   Date (GMT-3):  22/Nov/25 11:03:45
+#
+timezone_offset_hours = -3
+timezone_label        = GMT-3
+
+# ---------------------------------------------------------------------------
+# Explorer URLs (optional)
+# ---------------------------------------------------------------------------
+# Local mempool explorer (e.g. RaspiBlitz mempool, over LAN or Tor).
+# If empty, no local link is included.
+#
+local_explorer_url = https://10.10.1.10:4081
+
+# Public explorer (e.g. https://mempool.space).
+# If empty, no public link is included.
+#
+explorer_url = https://mempool.space
+
+
+
+# ---------------------------------------------------------------------------
+# Wallet definitions
+# ---------------------------------------------------------------------------
+# Each wallet is defined in its own section.
+# You can monitor:
+#   - Single-sig wallets via xpub (script registers with NBX).
+#   - Multisig / BTCPay-managed wallets via 'derivation' (script trusts NBX/BTCPay).
+#
+# For each wallet:
+#   name       = Friendly display name for emails.
+#   xpub       = (For single-sig) NBX-compatible xpub / derivation string.
+#   derivation = (For multisig or BTCPay-managed wallets) full NBX 'derivationStrategy'.
+#
+[wallet "1"]
+name       = Wallet Name
+xpub       = xpub6...
+
+[wallet "2"]
+name       = Wallet Name
+xpub       = xpub6...
+
+[wallet "3"]
+name       = MultiSig Wallet Name
+derivation = 3-of-xpub6...
