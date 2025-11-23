@@ -543,5 +543,3 @@ For each new transaction (0 confirmations) on a monitored wallet:
 
   - Stop manual foreground runs.
   - Let only the systemd service run the watcher.
-
-```
